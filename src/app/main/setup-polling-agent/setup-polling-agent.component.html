@@ -1,0 +1,36 @@
+<!-- setup-candidates.component.html -->
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-3xl">
+        <h2 class="text-2xl font-bold mb-6 text-center">Setup Polling Agent</h2>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="name">Name</label>
+            <input id="name" [(ngModel)]="name"
+                class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500" placeholder="Name" />
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="gender">Gender</label>
+            <select id="gender" [(ngModel)]="gender"
+                class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2" for="contact">Contact</label>
+            <input id="contact" [(ngModel)]="contact"
+                class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
+                placeholder="Contact" />
+        </div>
+
+        <button (click)="addCandidate()"
+            class="bg-green-500 text-white py-2 px-4 rounded w-full hover:bg-green-600 focus:outline-none focus:bg-green-700">
+            Add Agent
+        </button>
+
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<!-- dashboard.component.html -->
+<div class="min-h-screen bg-gray-100 p-8">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold mb-6 text-center">Election Results Dashboard</h2>
+
+        <!-- Bar Chart -->
+        <div class="bg-white p-8 rounded shadow-md mb-6">
+            <h3 class="text-xl font-bold mb-4">Results Bar Chart</h3>
+            <div id="resultsChart"></div>
+        </div>
+
+        <!-- Results Table -->
+        <div class="bg-white p-8 rounded shadow-md">
+            <h3 class="text-xl font-bold mb-4">Results Table</h3>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Candidate
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Polling Station
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Votes
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let result of results" class="bg-white border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{ result.candidate.name }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ result.pollingStation }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ result.votes }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

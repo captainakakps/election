@@ -1,0 +1,125 @@
+<!-- setup-election.component.html -->
+<div class="h-[90vh] w-full">
+    <div class="h-full">
+        <!-- Results Table -->
+        <div class="bg-white h-full p-8 rounded shadow-md" *ngIf="!add">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-xl font-semibold ">Elections Table</h3>
+                <button (click)="add = true"
+                    class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-700">
+                    Add Election
+                </button>
+
+            </div>
+
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Constituency
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Polling Station
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let result of elections" class="bg-white border-b">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{ result.name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ result.date | date }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ result.constituency }}
+                        </td>
+                        <td class="px-6 py-4">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Station
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Manager
+                        </th>
+                    </tr>
+                    <tr *ngFor="let x of result.pollingStations">
+                        <td class="px-6 py-4">
+                            {{ x.name}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ x.manager}}
+                        </td>
+                    </tr>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="min-h-screen flex items-center justify-center bg-gray-100" *ngIf="add">
+            <div class="bg-white p-8 rounded shadow-md w-full max-w-3xl">
+                <h2 class="text-2xl font-bold mb-6 text-center">Setup Election</h2>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="electionName">Election Name</label>
+                    <input id="electionName" [(ngModel)]="electionName"
+                        class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
+                        placeholder="Election Name" />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="date">Date</label>
+                    <input id="date" [(ngModel)]="date" type="date"
+                        class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500" />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="constituency">Constituency</label>
+                    <input id="constituency" [(ngModel)]="constituency"
+                        class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
+                        placeholder="Constituency" />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="pollingStation">Polling Station</label>
+                    <div class="flex gap-2">
+                        <input id="pollingStation" [(ngModel)]="pollingStation"
+                            class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
+                            placeholder="Station" />
+                        <input id="pollingStationManager" [(ngModel)]="pollingStationManager"
+                            class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
+                            placeholder="Station Manager" />
+                        <button (click)="addPollingStation(pollingStation)"
+                            class="bg-blue-500 text-white py-2 px-4 rounded ml-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-700">
+                            Add
+                        </button>
+                    </div>
+                    <ul class="mt-2">
+                        <li *ngFor="let station of pollingStations" class="bg-gray-200 rounded px-2 py-1 mt-1">
+                            {{ station.name }} - {{ station.manager }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class=" flex items-center gap-6">
+                    <button (click)="add = false"
+                        class="bg-green-100 py-2 px-4 rounded w-full hover:bg-green-200 focus:outline-none focus:bg-green-700">
+                        Cancel
+                    </button>
+                    <button (click)="createElection()"
+                        class="bg-green-500 text-white py-2 px-4 rounded w-full hover:bg-green-600 focus:outline-none focus:bg-green-700">
+                        Create Election
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

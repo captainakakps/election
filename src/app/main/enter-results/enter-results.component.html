@@ -1,0 +1,87 @@
+<!-- enter-results.component.html -->
+<div class="h-[90vh] w-full">
+    <div class="h-full">
+        <!-- Results Table -->
+        <div class="bg-white h-full p-8 rounded shadow-md" *ngIf="!addResult">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-xl font-semibold ">Results Table</h3>
+                <button (click)="addResult = true"
+                    class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-700">
+                    Add Results
+                </button>
+
+            </div>
+
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Candidate
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Polling Station
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Votes
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let result of results" class="bg-white border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{ result.candidate.name }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ result.pollingStation }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ result.votes }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="min-h-screen flex items-center justify-center bg-gray-100" *ngIf="addResult">
+            <div class="bg-white p-8 rounded shadow-md w-full max-w-3xl">
+                <h2 class="text-2xl font-bold mb-6 text-center">Enter Polling Station Results</h2>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="pollingStation">Polling Station</label>
+                    <select id="pollingStation" [(ngModel)]="selectedPollingStation"
+                        class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500">
+                        <option *ngFor="let station of pollingStations" [value]="station.name">{{ station.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="candidate">Candidate</label>
+                    <select id="candidate" [(ngModel)]="selectedCandidate"
+                        class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500">
+                        <option *ngFor="let candidate of candidates" [value]="candidate.name">{{ candidate.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" for="votes">Votes</label>
+                    <input id="votes" [(ngModel)]="votes" type="number"
+                        class="border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
+                        placeholder="Number of Votes" />
+                </div>
+
+                <div class=" flex items-center gap-6">
+                    <button (click)="addResult = false"
+                        class="bg-green-100 py-2 px-4 rounded w-full hover:bg-green-200 focus:outline-none focus:bg-green-700">
+                        Cancel
+                    </button>
+                    <button (click)="enterResults()"
+                        class="bg-green-500 text-white py-2 px-4 rounded w-full hover:bg-green-600 focus:outline-none focus:bg-green-700">
+                        Submit Results
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

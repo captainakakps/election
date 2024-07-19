@@ -1,0 +1,43 @@
+<div class="flex min-h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="bg-white w-64 p-6 shadow-md">
+        <h2 class="text-2xl font-bold mb-6">Election App</h2>
+        <ul>
+            <li class="mb-4" *ngIf="currentUser.title == 'Admin'">
+                <a routerLink="/app/main/setup-election" class="text-gray-700 hover:text-blue-500">Setup Election</a>
+            </li>
+            <li class="mb-4" *ngIf="currentUser.title == 'Admin'">
+                <a routerLink="/app/main/setup-candidates" class="text-gray-700 hover:text-blue-500">Setup
+                    Candidates</a>
+            </li>
+            <!-- <li class="mb-4">
+                <a routerLink="/app/main/setup-polling-agents" class="text-gray-700 hover:text-blue-500">Setup
+                    Polling Agents</a>
+            </li> -->
+            <li class="mb-4" *ngIf="currentUser.title == 'Admin' || currentUser.title == 'Agent'">
+                <a routerLink="/app/main/enter-results" class="text-gray-700 hover:text-blue-500">Enter Results</a>
+            </li>
+            <li *ngIf="currentUser.title == 'Admin' || currentUser.title == 'Candidate'">
+                <a routerLink="/app/main/dashboard" class="text-gray-700 hover:text-blue-500">Dashboard</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Navbar -->
+        <div class="bg-white p-4 shadow-md">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold">Election Results Management</div>
+                <div>
+                    <a routerLink="/account/login" class="text-gray-700 hover:text-blue-500">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Router Outlet -->
+        <div class="flex-1 p-8">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
